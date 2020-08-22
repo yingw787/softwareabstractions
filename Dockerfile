@@ -16,13 +16,14 @@ RUN apt-get install -y curl
 RUN mkdir /app
 WORKDIR /app
 
-# Install Java 6u45 for 64-bit Linux as jar 'jdk-6u45-linux-x64.bin' copied from
+# Use Java 6u45 for 64-bit Linux as jar 'jdk-6u45-linux-x64.bin' copied from
 # 'https://www.oracle.com/java/technologies/javase-java-archive-javase6-downloads.html'
 # into '${GIT_REPO_ROOT}'.
 #
 # NOTE: From the website, Alloy 4.x is meant to work with Java 6.x.
-ARG JAVA_6_BIN_ABSPATH
-COPY jdk-6u45-linux-x64.bin /app
+ARG JAVA6_DIRNAME=jdk1.6.0_45
+ENV JAVA_HOME=/opt/${JAVA6_DIRNAME}/bin
+ENV PATH=${JAVA_HOME}:${PATH}
 
 # Run commands.
 CMD [ "exec", "\"@\"" ]

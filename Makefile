@@ -57,6 +57,7 @@ docker-run: docker-build
 		--rm \
 		-it \
 		-v $(shell pwd):/app \
+		-v $(shell pwd)/jdk1.6.0_45:/opt/jdk1.6.0_45 \
 		--net=host \
 		$(DOCKER_IMAGE_NAME):$(APP_VERSION) \
 		bash -c "$(RUN_ARGS)"
