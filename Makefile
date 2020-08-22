@@ -8,7 +8,7 @@
 export APP_VERSION ?= $(shell git rev-parse --short HEAD)
 export GIT_REPO_ROOT ?= $(shell git rev-parse --show-toplevel)
 
-export DOCKER_IMAGE_NAME ?= handsonscala
+export DOCKER_IMAGE_NAME ?= softwareabstractions
 
 export USERID ?= $(shell id -u $(whoami))
 export GROUPID ?= $(shell id -g $(whoami))
