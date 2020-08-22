@@ -48,6 +48,9 @@ ifeq (docker-run,$(firstword $(MAKECMDGOALS)))
   $(eval $(RUN_ARGS):;@:)
 endif
 
+export JAVA_6=jdk1.6.0_45
+export ALLOY_JAR=alloy4.2_2015-02-22.jar
+
 # Lifts command into `docker run` context.
 #
 # See this blog post for Dockerizing a React.js application:
@@ -57,10 +60,14 @@ docker-run: docker-build
 		--rm \
 		-it \
 		-v $(shell pwd):/app \
-		-v $(shell pwd)/jdk1.6.0_45:/opt/jdk1.6.0_45 \
+		-v $(shell pwd)/$(JAVA_6):/opt/$(JAVA_6) \
+		-v $(shell pwd)/$(ALLOY_JAR):/opt/$(ALLOY_JAR) \
 		--net=host \
 		$(DOCKER_IMAGE_NAME):$(APP_VERSION) \
 		bash -c "$(RUN_ARGS)"
 
 docker-bash:
 	$(MAKE) docker-run bash
+
+docker-alloy:
+	$(MAKE) docker-run 'java -jar $(ALLOY_JAR)'
