@@ -25,5 +25,9 @@ ARG JAVA6_DIRNAME=jdk1.6.0_45
 ENV JAVA_HOME=/opt/${JAVA6_DIRNAME}/bin
 ENV PATH=${JAVA_HOME}:${PATH}
 
+# Install X11-specific materials for the Alloy GUI.
+# From: https://stackoverflow.com/a/25168483/1497211
+RUN apt-get install -y x11-apps
+
 # Run commands.
 CMD [ "exec", "\"@\"" ]

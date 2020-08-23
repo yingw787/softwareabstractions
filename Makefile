@@ -50,6 +50,7 @@ endif
 
 export JAVA_6=jdk1.6.0_45
 export ALLOY_JAR=alloy4.2_2015-02-22.jar
+export XSOCK=/tmp/.X11-unix
 
 # Lifts command into `docker run` context.
 #
@@ -62,6 +63,8 @@ docker-run: docker-build
 		-v $(shell pwd):/app \
 		-v $(shell pwd)/$(JAVA_6):/opt/$(JAVA_6) \
 		-v $(shell pwd)/$(ALLOY_JAR):/opt/$(ALLOY_JAR) \
+		-v $(XSOCK):$(XSOCK) \
+		-e DISPLAY=$(DISPLAY) \
 		--net=host \
 		$(DOCKER_IMAGE_NAME):$(APP_VERSION) \
 		bash -c "$(RUN_ARGS)"
@@ -70,4 +73,4 @@ docker-bash:
 	$(MAKE) docker-run bash
 
 docker-alloy:
-	$(MAKE) docker-run 'java -jar $(ALLOY_JAR)'
+	$(MAKE) docker-run 'java -jar /opt/$(ALLOY_JAR)'
