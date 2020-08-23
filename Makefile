@@ -65,7 +65,7 @@ docker-run: docker-build
 		-v $(shell pwd)/$(ALLOY_JAR):/opt/$(ALLOY_JAR) \
 		-v $(HOME)/.Xauthority:/root/.Xauthority \
 		-v $(XSOCK):$(XSOCK) \
-		-e DISPLAY=$(DISPLAY) \
+		-e DISPLAY=unix$(DISPLAY) \
 		--net=host \
 		$(DOCKER_IMAGE_NAME):$(APP_VERSION) \
 		bash -c "$(RUN_ARGS)"

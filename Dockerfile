@@ -32,5 +32,10 @@ RUN apt-get install -y x11-apps
 RUN apt-get install -y x11-xserver-utils
 RUN apt-get install -y xauth
 
+# TODO: I think there are some dependencies that Alloy requires that Firefox
+# also uses and without which the Alloy GUI breaks. Break out the dependencies
+# so that Firefox doesn't need to be installed.
+RUN apt-get install -y firefox
+
 # Run commands.
 CMD [ "exec", "\"@\"" ]
