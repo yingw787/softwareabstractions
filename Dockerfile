@@ -1,4 +1,5 @@
-FROM debian:buster-20200514
+# Ubuntu 20.04 LTS
+FROM ubuntu:focal-20200729
 LABEL maintainer="Ying Wang"
 LABEL application="softwareabstractions"
 
@@ -28,6 +29,8 @@ ENV PATH=${JAVA_HOME}:${PATH}
 # Install X11-specific materials for the Alloy GUI.
 # From: https://stackoverflow.com/a/25168483/1497211
 RUN apt-get install -y x11-apps
+RUN apt-get install -y x11-xserver-utils
+RUN apt-get install -y xauth
 
 # Run commands.
 CMD [ "exec", "\"@\"" ]

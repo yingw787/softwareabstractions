@@ -63,6 +63,7 @@ docker-run: docker-build
 		-v $(shell pwd):/app \
 		-v $(shell pwd)/$(JAVA_6):/opt/$(JAVA_6) \
 		-v $(shell pwd)/$(ALLOY_JAR):/opt/$(ALLOY_JAR) \
+		-v $(HOME)/.Xauthority:/root/.Xauthority \
 		-v $(XSOCK):$(XSOCK) \
 		-e DISPLAY=$(DISPLAY) \
 		--net=host \
